@@ -1,0 +1,361 @@
+# Prompt templates, all as used in the paper; the comment after each name gives
+# its name in the paper.
+#
+# A single-call prompt is: template, a blank line, then "Instance 1: <text>",
+# "Instance 2: <text>", ... separated by blank lines (see run.py).
+# To add a single-call variant, add a top-level entry with one template per task;
+# run.py --prompt <name> picks it up.
+
+standard:  # Standard
+  math: |
+    Task: Determine the majority parity label among the final answers to all provided math problems.
+
+    Instructions:
+    - Solve each math problem independently.
+    - Determine whether each final answer is even or odd.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "even_number", "odd_number".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Example response format:
+    {"answer": "odd_number"}
+
+    End your response with the JSON object containing your final answer.
+  ner: |
+    Task: Determine the majority entity-type label among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as containing a person entity (PER) or a location entity (LOC).
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "LOC", "PER".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Example response format:
+    {"answer": "PER"}
+
+    End your response with the JSON object containing your final answer.
+  occurrence: |
+    Task: Determine the majority occurrence label for the exact word "the" among all provided instances.
+
+    Instructions:
+    - For each instance, count the word "the" case-insensitively, for examples, "the", "The", and "THE" all count.
+    - Count only the standalone word "the", do not count "the" when it appears as part of another word, such as "they", "there", or "other".
+    - Classify each instance as exactly once or more than once.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "more_than_once", "exactly_once".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Example response format:
+    {"answer": "exactly_once"}
+
+    End your response with the JSON object containing your final answer.
+  sentiment: |
+    Task: Determine the majority sentiment label among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as positive or negative.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "negative", "positive".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Example response format:
+    {"answer": "positive"}
+
+    End your response with the JSON object containing your final answer.
+  wsd: |
+    Task: Determine the majority sense of the word "java" among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as using "java" to mean a place or a programming language.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "place", "programming_language".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Example response format:
+    {"answer": "programming_language"}
+
+    End your response with the JSON object containing your final answer.
+
+hint:  # Hint: standard plus a Hints section
+  math: |
+    Task: Determine the majority parity label among the final answers to all provided math problems.
+
+    Instructions:
+    - Solve each math problem independently.
+    - Determine whether each final answer is even or odd.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "even_number", "odd_number".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Hints:
+    - The input may contain many instances, and the majority label cannot be reliably determined from any subset or by sampling.
+    - The final answer should be based on processing all provided instances, rather than a partial scan or estimation.
+
+    Example response format:
+    {"answer": "odd_number"}
+
+    End your response with the JSON object containing your final answer.
+  ner: |
+    Task: Determine the majority entity-type label among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as containing a person entity (PER) or a location entity (LOC).
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "LOC", "PER".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Hints:
+    - The input may contain many instances, and the majority label cannot be reliably determined from any subset or by sampling.
+    - The final answer should be based on processing all provided instances, rather than a partial scan or estimation.
+
+    Example response format:
+    {"answer": "PER"}
+
+    End your response with the JSON object containing your final answer.
+  occurrence: |
+    Task: Determine the majority occurrence label for the exact word "the" among all provided instances.
+
+    Instructions:
+    - For each instance, count the word "the" case-insensitively, for examples, "the", "The", and "THE" all count.
+    - Count only the standalone word "the", do not count "the" when it appears as part of another word, such as "they", "there", or "other".
+    - Classify each instance as exactly once or more than once.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "more_than_once", "exactly_once".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Hints:
+    - The input may contain many instances, and the majority label cannot be reliably determined from any subset or by sampling.
+    - The final answer should be based on processing all provided instances, rather than a partial scan or estimation.
+
+    Example response format:
+    {"answer": "exactly_once"}
+
+    End your response with the JSON object containing your final answer.
+  sentiment: |
+    Task: Determine the majority sentiment label among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as positive or negative.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "negative", "positive".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Hints:
+    - The input may contain many instances, and the majority label cannot be reliably determined from any subset or by sampling.
+    - The final answer should be based on processing all provided instances, rather than a partial scan or estimation.
+
+    Example response format:
+    {"answer": "positive"}
+
+    End your response with the JSON object containing your final answer.
+  wsd: |
+    Task: Determine the majority sense of the word "java" among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as using "java" to mean a place or a programming language.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "place", "programming_language".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Hints:
+    - The input may contain many instances, and the majority label cannot be reliably determined from any subset or by sampling.
+    - The final answer should be based on processing all provided instances, rather than a partial scan or estimation.
+
+    Example response format:
+    {"answer": "programming_language"}
+
+    End your response with the JSON object containing your final answer.
+
+suggested_strategy:  # Suggested Strategy: standard plus a Suggested Strategy section
+  math: |
+    Task: Determine the majority parity label among the final answers to all provided math problems.
+
+    Instructions:
+    - Solve each math problem independently.
+    - Determine whether each final answer is even or odd.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "even_number", "odd_number".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Suggested Strategy:
+    - The input may contain a large number of instances, and you must take all of them into account — the majority cannot be reliably inferred from a subset or by sampling.
+    - If there are many instances, process them in batches: solve and count within each batch, then sum the per-batch counts and decide the overall majority from those totals.
+
+    Example response format:
+    {"answer": "odd_number"}
+
+    End your response with the JSON object containing your final answer.
+  ner: |
+    Task: Determine the majority entity-type label among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as containing a person entity (PER) or a location entity (LOC).
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "LOC", "PER".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Suggested Strategy:
+    - The input may contain a large number of instances, and you must take all of them into account — the majority cannot be reliably inferred from a subset or by sampling.
+    - If there are many instances, process them in batches: classify and count within each batch, then sum the per-batch counts and decide the overall majority from those totals.
+
+    Example response format:
+    {"answer": "PER"}
+
+    End your response with the JSON object containing your final answer.
+  occurrence: |
+    Task: Determine the majority occurrence label for the exact word "the" among all provided instances.
+
+    Instructions:
+    - For each instance, count the word "the" case-insensitively, for examples, "the", "The", and "THE" all count.
+    - Count only the standalone word "the", do not count "the" when it appears as part of another word, such as "they", "there", or "other".
+    - Classify each instance as exactly once or more than once.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "more_than_once", "exactly_once".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Suggested Strategy:
+    - The input may contain a large number of instances, and you must take all of them into account — the majority cannot be reliably inferred from a subset or by sampling.
+    - If there are many instances, process them in batches: count and classify within each batch, then sum the per-batch counts and decide the overall majority from those totals.
+
+    Example response format:
+    {"answer": "exactly_once"}
+
+    End your response with the JSON object containing your final answer.
+  sentiment: |
+    Task: Determine the majority sentiment label among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as positive or negative.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "negative", "positive".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Suggested Strategy:
+    - The input may contain a large number of instances, and you must take all of them into account — the majority cannot be reliably inferred from a subset or by sampling.
+    - If there are many instances, process them in batches: classify and count within each batch, then sum the per-batch counts and decide the overall majority from those totals.
+
+    Example response format:
+    {"answer": "positive"}
+
+    End your response with the JSON object containing your final answer.
+  wsd: |
+    Task: Determine the majority sense of the word "java" among all provided instances.
+
+    Instructions:
+    - Classify each instance independently as using "java" to mean a place or a programming language.
+    - Count how many instances belong to each label.
+    - Choose exactly one label from: "place", "programming_language".
+    - If the counts are tied, answer -1.
+    - Return only a JSON object with the field "answer".
+
+    Suggested Strategy:
+    - The input may contain a large number of instances, and you must take all of them into account — the majority cannot be reliably inferred from a subset or by sampling.
+    - If there are many instances, process them in batches: classify and count within each batch, then sum the per-batch counts and decide the overall majority from those totals.
+
+    Example response format:
+    {"answer": "programming_language"}
+
+    End your response with the JSON object containing your final answer.
+
+# Self-Prompt, two calls. Call 1 shows no instances: the model writes the instruction a
+# solver should follow ($num_instances is filled in), ending with the hand-off
+# block. Call 2 is that instruction (the text between the markers), the answer
+# format, then the instances. The paper wrote one instruction per model, task
+# and instance count, and reused it for every prompt of that size.
+self_prompt:
+  prime:
+    math: |
+      Write the instruction prompt that another model will later use to solve the
+      following task over $num_instances math problems that are NOT shown to you now:
+
+      Task: determine the majority parity label among the final answers to all the
+      problems — whether "even_number" or "odd_number" is more frequent, or -1 if the
+      two are tied.
+
+      Produce a single, self-contained instruction prompt, written in the imperative and
+      addressed to the solver. It must specify how to solve each problem and decide
+      whether its final answer is even or odd, how to count the two labels, how to decide
+      the majority, and how to handle a tie. Write the prompt itself only — do not solve
+      the task and do not describe yourself.
+    ner: |
+      Write the instruction prompt that another model will later use to solve the
+      following task over $num_instances instances that are NOT shown to you now:
+
+      Task: determine the majority entity-type label among all the instances — whether
+      "PER" (a person entity) or "LOC" (a location entity) is more frequent, or -1 if
+      the two are tied. Each instance contains exactly one relevant entity.
+
+      Produce a single, self-contained instruction prompt, written in the imperative and
+      addressed to the solver. It must specify how to classify each instance as PER or
+      LOC, how to count the two labels, how to decide the majority, and how to handle a
+      tie. Write the prompt itself only — do not solve the task and do not describe
+      yourself.
+    occurrence: |
+      Write the instruction prompt that another model will later use to solve the
+      following task over $num_instances instances that are NOT shown to you now:
+
+      Task: determine the majority occurrence label for the exact word "the" among all
+      the instances — whether "exactly_once" or "more_than_once" is more frequent, or -1
+      if the two are tied.
+
+      Produce a single, self-contained instruction prompt, written in the imperative and
+      addressed to the solver. It must specify how to count the standalone word "the" in
+      each instance (case-insensitive — "the", "The", "THE" all count; do NOT count
+      "the" when it is part of another word such as "they", "there", "other"), how to
+      classify each instance as exactly_once or more_than_once, how to count the two
+      labels, how to decide the majority, and how to handle a tie. Write the prompt
+      itself only — do not solve the task and do not describe yourself.
+    sentiment: |
+      Write the instruction prompt that another model will later use to solve the
+      following task over $num_instances instances that are NOT shown to you now:
+
+      Task: determine the majority sentiment label among all the instances — whether
+      "positive" or "negative" is more frequent, or -1 if the two are tied.
+
+      Produce a single, self-contained instruction prompt, written in the imperative and
+      addressed to the solver. It must specify how to classify each instance as positive
+      or negative, how to count the labels, how to decide the majority, and how to handle
+      a tie. Write the prompt itself only — do not solve the task and do not describe
+      yourself.
+    wsd: |
+      Write the instruction prompt that another model will later use to solve the
+      following task over $num_instances instances that are NOT shown to you now:
+
+      Task: determine the majority sense of the word "java" among all the instances —
+      whether "place" or "programming_language" is more frequent, or -1 if the two are
+      tied.
+
+      Produce a single, self-contained instruction prompt, written in the imperative and
+      addressed to the solver. It must specify how to decide, for each instance, whether
+      "java" means a place or a programming language, how to count the two labels, how to
+      decide the majority, and how to handle a tie. Write the prompt itself only — do not
+      solve the task and do not describe yourself.
+  handoff: |
+    You may think through this first. Then, at the very end of your response, output
+    ONLY the content to hand to the next step, wrapped exactly between these two
+    markers, each on its own line:
+    <<<NEXT>>>
+    ... the content to hand on ...
+    <<<END>>>
+    Do not write anything after <<<END>>>.
+  answer_format: |
+    Return only a JSON object with the field "answer".
+
+    Example response format:
+    {"answer": "<your answer>"}
+
+    End your response with the JSON object containing your final answer.
