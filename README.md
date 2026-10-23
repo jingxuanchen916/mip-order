@@ -4,7 +4,7 @@
   <a href="https://arxiv.org/abs/2610.29057">
     <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2610.29057-b31b1b.svg">
   </a>
-  <a href="https://huggingface.co/datasets/cjxhwyt/mip-order">
+  <a href="https://huggingface.co/datasets/jingxuanchen916/mip-order">
     <img alt="Hugging Face Dataset" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow">
   </a>
 </p>
