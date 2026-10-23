@@ -1,8 +1,14 @@
 # Does Every Instance Count Equally? Order Effects in LLM Multi-Instance Processing
 
+<p align="center">
+    <a href="https://arxiv.org/abs/2610.29057" target="_blank" rel="noopener noreferrer">
+        <img alt="paper" src="https://img.shields.io/badge/paper-paper?logo=arxiv&logoColor=%23B31B1B&labelColor=white&color=%23B31B1B">
+    </a>
+</p>
+
 [Data](https://huggingface.co/datasets/cjxhwyt/mip-order) ·
 Earlier work on instance count: [paper](https://aclanthology.org/2026.acl-long.1470/),
-[mip-understand](https://huggingface.co/datasets/cjxhwyt/mip-understand)
+[mip-understand](https://huggingface.co/datasets/cjxhwyt/mip-understanding)
 
 In multi-instance processing (MIP), a model reads many instances of a simple task in one prompt
 and answers one question about all of them. Here the question is which label is the majority, and
@@ -94,5 +100,14 @@ tokens, and up to 3 attempts when no answer can be parsed. A response is correct
 | `self_prompt` | Self-Prompt | two calls: the model first writes its own instruction without seeing the instances, then answers with it |
 
 ## Citation
-
-To be added with the arXiv version.
+```
+@misc{chen2026doesinstancecountequally,
+      title={Does Every Instance Count Equally? Order Effects in LLM Multi-Instance Processing}, 
+      author={Jingxuan Chen and Mohammad Taher Pilehvar and Jose Camacho-Collados},
+      year={2026},
+      eprint={2610.29057},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2610.29057}, 
+}
+```
