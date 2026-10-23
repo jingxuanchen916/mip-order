@@ -1,12 +1,14 @@
 # Does Every Instance Count Equally? Order Effects in LLM Multi-Instance Processing
 
 <p align="center">
-    <a href="https://arxiv.org/abs/2610.29057" target="_blank" rel="noopener noreferrer">
-        <img alt="paper" src="https://img.shields.io/badge/paper-paper?logo=arxiv&logoColor=%23B31B1B&labelColor=white&color=%23B31B1B">
-    </a>
+  <a href="https://arxiv.org/abs/2610.29057">
+    <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2610.29057-b31b1b.svg">
+  </a>
+  <a href="https://huggingface.co/datasets/cjxhwyt/mip-order">
+    <img alt="Hugging Face Dataset" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow">
+  </a>
 </p>
 
-[Data](https://huggingface.co/datasets/cjxhwyt/mip-order) ·
 Earlier work on instance count: [paper](https://aclanthology.org/2026.acl-long.1470/),
 [mip-understand](https://huggingface.co/datasets/cjxhwyt/mip-understanding)
 
