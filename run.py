@@ -25,7 +25,7 @@ import yaml
 HERE = Path(__file__).resolve().parent
 SETTINGS = ("core", "generalisability")
 TASKS = ("math", "ner", "occurrence", "sentiment", "wsd")
-DATA = "cjxhwyt/mip-order"  # on the Hugging Face Hub
+DATA = "jingxuanchen916/mip-order"  # on the Hugging Face Hub
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
 MAX_ATTEMPTS = 3  # per call, as in the paper: a response that fails its check is retried
 # Bad key, no credit, no access, unknown model: no retry or later prompt can succeed,
